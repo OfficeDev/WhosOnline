@@ -24,5 +24,10 @@
 
 # SendActivity_2KLqHw()
 [Activity
-    Text = Presence is ${turn.presenceResults}
+    Text = Users: ${turn.users}
+]
+
+# SendActivity_Z3dugC()
+[Activity
+    Text = Hello ${turn.users[turn.foreach.index]}
 ]

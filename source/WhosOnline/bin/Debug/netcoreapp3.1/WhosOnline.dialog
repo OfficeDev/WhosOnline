@@ -79,23 +79,28 @@
           "$kind": "Microsoft.SetProperties",
           "$designer": {
             "id": "cOZxUH",
-            "name": "Get array of user IDs"
+            "name": "Build arrays: users and userIds"
           },
           "assignments": [
             {
-              "value": "=foreach(turn.directReportResults.content.value, u => u.id)",
-              "property": "turn.userIds"
+              "property": "turn.users",
+              "value": "=turn.directReportResults.content.value"
             },
             {
-              "property": "turn.userIds",
-              "value": "=union(createArray(turn.managerResults.content.id),turn.userIds)"
+              "property": "turn.users",
+              "value": "=union(createArray(turn.managerResults.content),turn.users)"
+            },
+            {
+              "value": "=foreach(turn.users, u => u.id)",
+              "property": "turn.userIds"
             }
           ]
         },
         {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "4hGHN6"
+            "id": "4hGHN6",
+            "name": "DEBUG Send a response"
           },
           "activity": "${SendActivity_4hGHN6()}"
         },
@@ -114,6 +119,24 @@
           },
           "contentType": "application/json",
           "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "EyGp7H"
+          },
+          "value": "turn.foreach.value",
+          "itemsProperty": "turn.users",
+          "index": "turn.foreach.index",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "Z3dugC"
+              },
+              "activity": "${SendActivity_Z3dugC()}"
+            }
+          ]
         },
         {
           "$kind": "Microsoft.SendActivity",
