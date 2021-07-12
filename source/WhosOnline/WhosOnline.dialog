@@ -1,0 +1,64 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "WhosOnline",
+    "description": "",
+    "id": "A79tBe"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "mb2n1u"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "kMjqz1"
+          },
+          "activity": "${SendActivity_DidNotUnderstand()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "3kmrpy",
+        "name": "WhosOnline"
+      },
+      "intent": "WhosOnline",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Yohh6z"
+          },
+          "activity": "${SendActivity_Yohh6z()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "kT7XED",
+        "name": "Greeting"
+      },
+      "intent": "Greeting",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "nzY6R3"
+          },
+          "activity": "${SendActivity_nzY6R3()}"
+        }
+      ]
+    }
+  ],
+  "generator": "WhosOnline.lg",
+  "id": "WhosOnline",
+  "recognizer": "WhosOnline.lu.qna"
+}

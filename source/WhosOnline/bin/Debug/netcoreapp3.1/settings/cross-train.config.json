@@ -1,0 +1,9 @@
+{
+  "WhosOnline.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "WhosOnline": "",
+      "Greeting": ""
+    }
+  }
+}

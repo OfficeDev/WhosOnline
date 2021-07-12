@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_WhosOnline",
+  "recognizers": {
+    "en-us": "WhosOnline.en-us.lu",
+    "": "WhosOnline.en-us.lu"
+  }
+}
