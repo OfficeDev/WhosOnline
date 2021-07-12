@@ -32,11 +32,90 @@
       "intent": "WhosOnline",
       "actions": [
         {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "UdMx9P",
+            "name": "Log into Azure AD"
+          },
+          "timeout": 900000,
+          "property": "turn.token",
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "GraphAccess",
+          "text": "Please sign in",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "2C5Bep",
+            "name": "Get manager info from Graph"
+          },
+          "resultProperty": "turn.managerResults",
+          "method": "GET",
+          "url": "https://graph.microsoft.com/v1.0/me/manager",
+          "headers": {
+            "Authorization": "Bearer ${turn.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "tDUmvB",
+            "name": "Set properties with manager info"
+          },
+          "assignments": [
+            {
+              "property": "turn.managerName",
+              "value": "=turn.managerResults.content.displayName"
+            },
+            {
+              "property": "turn.managerId",
+              "value": "=turn.managerResults.content.id"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "mrl4a5"
+          },
+          "resultProperty": "turn.directReportResults",
+          "method": "GET",
+          "url": "https://graph.microsoft.com/v1.0/users/${turn.managerId}/directReports",
+          "headers": {
+            "Authorization": "Bearer ${turn.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "cOZxUH"
+          },
+          "assignments": [
+            {
+              "property": "turn.userIds",
+              "value": "=createArray(0,1)"
+            }
+          ]
+        },
+        {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "Yohh6z"
+            "id": "4hGHN6"
           },
-          "activity": "${SendActivity_Yohh6z()}"
+          "activity": "${SendActivity_4hGHN6()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Mvkv8b"
+          },
+          "activity": "${SendActivity_Mvkv8b()}"
         }
       ]
     },

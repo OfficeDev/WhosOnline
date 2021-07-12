@@ -7,11 +7,6 @@
 
 # SendActivity_DidNotUnderstand_text()
 - Sorry, I didn't get that.
-# SendActivity_Yohh6z()
-[Activity
-    Text = - You asked Who's Online
-]
-
 # SendActivity_nzY6R3()
 [Activity
     Text = ${SendActivity_nzY6R3_text()}
@@ -21,3 +16,13 @@
 - - Hello there
 - Hi to you
 - Howdy
+# SendActivity_Mvkv8b()
+[Activity
+    Text = Your results are ${turn.directReportResults}
+]
+
+
+# SendActivity_4hGHN6()
+[Activity
+    Text = Array is ${turn.userIds}
+]
