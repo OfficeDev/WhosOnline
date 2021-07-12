@@ -16,13 +16,13 @@
 - - Hello there
 - Hi to you
 - Howdy
-# SendActivity_Mvkv8b()
+# SendActivity_4hGHN6()
 [Activity
-    Text = Your results are ${turn.directReportResults}
+    Text = User IDs are: ${turn.userIds}
 ]
 
 
-# SendActivity_4hGHN6()
+# SendActivity_2KLqHw()
 [Activity
-    Text = Array is ${turn.userIds}
+    Text = Presence is ${turn.presenceResults}
 ]

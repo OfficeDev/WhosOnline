@@ -49,7 +49,7 @@
           "$kind": "Microsoft.HttpRequest",
           "$designer": {
             "id": "2C5Bep",
-            "name": "Get manager info from Graph"
+            "name": "Graph: Get manager"
           },
           "resultProperty": "turn.managerResults",
           "method": "GET",
@@ -61,30 +61,14 @@
           "responseType": "json"
         },
         {
-          "$kind": "Microsoft.SetProperties",
-          "$designer": {
-            "id": "tDUmvB",
-            "name": "Set properties with manager info"
-          },
-          "assignments": [
-            {
-              "property": "turn.managerName",
-              "value": "=turn.managerResults.content.displayName"
-            },
-            {
-              "property": "turn.managerId",
-              "value": "=turn.managerResults.content.id"
-            }
-          ]
-        },
-        {
           "$kind": "Microsoft.HttpRequest",
           "$designer": {
-            "id": "mrl4a5"
+            "id": "mrl4a5",
+            "name": "Graph: Get direct reports"
           },
           "resultProperty": "turn.directReportResults",
           "method": "GET",
-          "url": "https://graph.microsoft.com/v1.0/users/${turn.managerId}/directReports",
+          "url": "https://graph.microsoft.com/v1.0/users/${turn.managerResults.content.id}/directReports",
           "headers": {
             "Authorization": "Bearer ${turn.token.token}"
           },
@@ -94,12 +78,17 @@
         {
           "$kind": "Microsoft.SetProperties",
           "$designer": {
-            "id": "cOZxUH"
+            "id": "cOZxUH",
+            "name": "Get array of user IDs"
           },
           "assignments": [
             {
+              "value": "=foreach(turn.directReportResults.content.value, u => u.id)",
+              "property": "turn.userIds"
+            },
+            {
               "property": "turn.userIds",
-              "value": "=createArray(0,1)"
+              "value": "=union(createArray(turn.managerResults.content.id),turn.userIds)"
             }
           ]
         },
@@ -111,11 +100,27 @@
           "activity": "${SendActivity_4hGHN6()}"
         },
         {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "P7uhqO",
+            "name": "Graph: Get presence"
+          },
+          "resultProperty": "turn.presenceResults",
+          "method": "POST",
+          "url": "https://graph.microsoft.com/v1.0/communications/getPresencesByUserId",
+          "body": "{ \"ids\": ${turn.userIds} }",
+          "headers": {
+            "Authorization": "Bearer ${turn.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "Mvkv8b"
+            "id": "2KLqHw"
           },
-          "activity": "${SendActivity_Mvkv8b()}"
+          "activity": "${SendActivity_2KLqHw()}"
         }
       ]
     },
