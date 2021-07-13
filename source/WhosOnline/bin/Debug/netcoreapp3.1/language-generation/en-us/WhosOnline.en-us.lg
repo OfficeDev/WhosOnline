@@ -24,7 +24,7 @@
 
 # SendActivity_2KLqHw()
 [Activity
-    Text = Users: ${turn.users}
+    Text = Users: ${turn.presenceResults}
 ]
 
 # SendActivity_Z3dugC()
