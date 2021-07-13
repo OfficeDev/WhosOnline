@@ -1,0 +1,6 @@
+[import](common.lg)
+
+# SendActivity_qosugk()
+[Activity
+    Text = ${dialog.outputHtml}
+]

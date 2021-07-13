@@ -1,0 +1,172 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "50YD28",
+    "name": "GetTeamStatus",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "9cKVa8"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "UdMx9P",
+            "name": "Log into Azure AD"
+          },
+          "timeout": 900000,
+          "property": "dialog.token",
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "GraphAccess",
+          "text": "Please sign in",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "2C5Bep",
+            "name": "Graph: Get manager"
+          },
+          "resultProperty": "dialog.managerResults",
+          "method": "GET",
+          "url": "https://graph.microsoft.com/v1.0/me/manager",
+          "headers": {
+            "Authorization": "Bearer ${dialog.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "mrl4a5",
+            "name": "Graph: Get direct reports"
+          },
+          "resultProperty": "dialog.directReportResults",
+          "method": "GET",
+          "url": "https://graph.microsoft.com/v1.0/users/${dialog.managerResults.content.id}/directReports",
+          "headers": {
+            "Authorization": "Bearer ${dialog.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "cOZxUH",
+            "name": "Set properties"
+          },
+          "assignments": [
+            {
+              "property": "dialog.users",
+              "value": "=dialog.directReportResults.content.value"
+            },
+            {
+              "property": "dialog.users",
+              "value": "=union(createArray(dialog.managerResults.content),dialog.users)"
+            },
+            {
+              "value": "=foreach(dialog.users, u => u.id)",
+              "property": "dialog.userIds"
+            },
+            {
+              "property": "dialog.outputHtml",
+              "value": "Here's your team's online status:<br />"
+            },
+            {
+              "property": "dialog.colors",
+              "value": {
+                "Available": "green",
+                "Away": "gold",
+                "BeRightBack": "gold",
+                "Busy": "darkred",
+                "DoNotDisturb": "darkred",
+                "Offline": "gray"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "P7uhqO",
+            "name": "Graph: Get presence"
+          },
+          "resultProperty": "dialog.presenceResults",
+          "method": "POST",
+          "url": "https://graph.microsoft.com/v1.0/communications/getPresencesByUserId",
+          "body": "{ \"ids\": ${dialog.userIds} }",
+          "headers": {
+            "Authorization": "Bearer ${dialog.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "EyGp7H",
+            "name": "Loop: For each user"
+          },
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.users",
+          "index": "dialog.foreach.index",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "Qzbnqa"
+              },
+              "assignments": [
+                {
+                  "property": "dialog.users[dialog.foreach.index].availability",
+                  "value": "=dialog.presenceResults.content.value[dialog.foreach.index].availability"
+                },
+                {
+                  "property": "dialog.users[dialog.foreach.index].activity",
+                  "value": "=dialog.presenceResults.content.value[dialog.foreach.index].activity"
+                },
+                {
+                  "property": "this.color",
+                  "value": "${getProperty(dialog.colors, dialog.users[dialog.foreach.index].activity)}"
+                },
+                {
+                  "property": "this.colorHtml",
+                  "value": "<span style=\"color: ${this.color};\">⬤</span>"
+                },
+                {
+                  "property": "this.userHtml",
+                  "value": "${this.colorHtml} ${dialog.users[dialog.foreach.index].displayName} is ${dialog.users[dialog.foreach.index].activity}<br />"
+                },
+                {
+                  "property": "dialog.outputHtml",
+                  "value": "=concat(dialog.outputHtml, this.userHtml)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "qosugk"
+          },
+          "activity": "${SendActivity_qosugk()}"
+        }
+      ]
+    }
+  ],
+  "generator": "GetTeamStatus.lg",
+  "recognizer": "GetTeamStatus.lu.qna",
+  "id": "GetTeamStatus"
+}

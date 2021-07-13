@@ -2,7 +2,9 @@
   "WhosOnline.en-us": {
     "rootDialog": true,
     "triggers": {
-      "WhosOnline": "",
+      "WhosOnline": [
+        "GetTeamStatus.en-us"
+      ],
       "Greeting": ""
     }
   }

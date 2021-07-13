@@ -248,3 +248,12 @@ C:\Source\Repos\WhosOnline\source\WhosOnline\obj\Debug\netcoreapp3.1\staticwebas
 C:\Source\Repos\WhosOnline\source\WhosOnline\obj\Debug\netcoreapp3.1\WhosOnline.dll
 C:\Source\Repos\WhosOnline\source\WhosOnline\obj\Debug\netcoreapp3.1\WhosOnline.pdb
 C:\Source\Repos\WhosOnline\source\WhosOnline\obj\Debug\netcoreapp3.1\WhosOnline.genruntimeconfig.cache
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\GetTeamStatus.dialog
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\recognizers\GetTeamStatus.en-us.lu.dialog
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\recognizers\GetTeamStatus.lu.dialog
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\recognizers\GetTeamStatus.lu.qna.dialog
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\language-generation\en-us\GetTeamStatus.en-us.lg
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\language-understanding\en-us\GetTeamStatus.en-us.lu
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\generated\interruption\GetTeamStatus.en-us.lu
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetTeamStatus\knowledge-base\en-us\GetTeamStatus.en-us.qna
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\generated\interruption\GetTeamStatus.en-us.qna

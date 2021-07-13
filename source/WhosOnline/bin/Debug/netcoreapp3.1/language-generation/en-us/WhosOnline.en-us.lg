@@ -13,10 +13,6 @@
 ]
 
 # SendActivity_nzY6R3_text()
-- - Hello there
+- Hello there
 - Hi to you
 - Howdy
-# SendActivity_qosugk()
-[Activity
-    Text = ${dialog.output}
-]
