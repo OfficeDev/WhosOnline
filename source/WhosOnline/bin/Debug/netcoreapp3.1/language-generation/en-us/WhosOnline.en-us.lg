@@ -16,18 +16,7 @@
 - - Hello there
 - Hi to you
 - Howdy
-# SendActivity_4hGHN6()
+# SendActivity_qosugk()
 [Activity
-    Text = User IDs are: ${turn.userIds}
-]
-
-
-# SendActivity_2KLqHw()
-[Activity
-    Text = Users: ${turn.presenceResults}
-]
-
-# SendActivity_Z3dugC()
-[Activity
-    Text = Hello ${turn.users[turn.foreach.index]}
+    Text = ${dialog.output}
 ]

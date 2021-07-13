@@ -38,7 +38,7 @@
             "name": "Log into Azure AD"
           },
           "timeout": 900000,
-          "property": "turn.token",
+          "property": "dialog.token",
           "maxTurnCount": 3,
           "allowInterruptions": true,
           "connectionName": "GraphAccess",
@@ -51,11 +51,11 @@
             "id": "2C5Bep",
             "name": "Graph: Get manager"
           },
-          "resultProperty": "turn.managerResults",
+          "resultProperty": "dialog.managerResults",
           "method": "GET",
           "url": "https://graph.microsoft.com/v1.0/me/manager",
           "headers": {
-            "Authorization": "Bearer ${turn.token.token}"
+            "Authorization": "Bearer ${dialog.token.token}"
           },
           "contentType": "application/json",
           "responseType": "json"
@@ -66,11 +66,11 @@
             "id": "mrl4a5",
             "name": "Graph: Get direct reports"
           },
-          "resultProperty": "turn.directReportResults",
+          "resultProperty": "dialog.directReportResults",
           "method": "GET",
-          "url": "https://graph.microsoft.com/v1.0/users/${turn.managerResults.content.id}/directReports",
+          "url": "https://graph.microsoft.com/v1.0/users/${dialog.managerResults.content.id}/directReports",
           "headers": {
-            "Authorization": "Bearer ${turn.token.token}"
+            "Authorization": "Bearer ${dialog.token.token}"
           },
           "contentType": "application/json",
           "responseType": "json"
@@ -79,30 +79,26 @@
           "$kind": "Microsoft.SetProperties",
           "$designer": {
             "id": "cOZxUH",
-            "name": "Build arrays: users and userIds"
+            "name": "Set properties"
           },
           "assignments": [
             {
-              "property": "turn.users",
-              "value": "=turn.directReportResults.content.value"
+              "property": "dialog.users",
+              "value": "=dialog.directReportResults.content.value"
             },
             {
-              "property": "turn.users",
-              "value": "=union(createArray(turn.managerResults.content),turn.users)"
+              "property": "dialog.users",
+              "value": "=union(createArray(dialog.managerResults.content),dialog.users)"
             },
             {
-              "value": "=foreach(turn.users, u => u.id)",
-              "property": "turn.userIds"
+              "value": "=foreach(dialog.users, u => u.id)",
+              "property": "dialog.userIds"
+            },
+            {
+              "property": "dialog.output",
+              "value": "=\"\""
             }
           ]
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "4hGHN6",
-            "name": "DEBUG Send a response"
-          },
-          "activity": "${SendActivity_4hGHN6()}"
         },
         {
           "$kind": "Microsoft.HttpRequest",
@@ -110,12 +106,12 @@
             "id": "P7uhqO",
             "name": "Graph: Get presence"
           },
-          "resultProperty": "turn.presenceResults",
+          "resultProperty": "dialog.presenceResults",
           "method": "POST",
           "url": "https://graph.microsoft.com/v1.0/communications/getPresencesByUserId",
-          "body": "{ \"ids\": ${turn.userIds} }",
+          "body": "{ \"ids\": ${dialog.userIds} }",
           "headers": {
-            "Authorization": "Bearer ${turn.token.token}"
+            "Authorization": "Bearer ${dialog.token.token}"
           },
           "contentType": "application/json",
           "responseType": "json"
@@ -125,25 +121,42 @@
           "$designer": {
             "id": "EyGp7H"
           },
-          "value": "turn.foreach.value",
-          "itemsProperty": "turn.users",
-          "index": "turn.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.users",
+          "index": "dialog.foreach.index",
           "actions": [
             {
-              "$kind": "Microsoft.SendActivity",
+              "$kind": "Microsoft.SetProperties",
               "$designer": {
-                "id": "Z3dugC"
+                "id": "Qzbnqa"
               },
-              "activity": "${SendActivity_Z3dugC()}"
+              "assignments": [
+                {
+                  "property": "dialog.users[dialog.foreach.index].availability",
+                  "value": "=dialog.presenceResults.content.value[dialog.foreach.index].availability"
+                },
+                {
+                  "property": "dialog.users[dialog.foreach.index].activity",
+                  "value": "=dialog.presenceResults.content.value[dialog.foreach.index].activity"
+                },
+                {
+                  "property": "this.userHtml",
+                  "value": "${dialog.users[dialog.foreach.index].displayName} is ${dialog.users[dialog.foreach.index].activity}<br />"
+                },
+                {
+                  "property": "dialog.output",
+                  "value": "=concat(dialog.output, this.userHtml)"
+                }
+              ]
             }
           ]
         },
         {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "2KLqHw"
+            "id": "qosugk"
           },
-          "activity": "${SendActivity_2KLqHw()}"
+          "activity": "${SendActivity_qosugk()}"
         }
       ]
     },
