@@ -1,0 +1,230 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "9t9cJ4",
+    "name": "GetUserStatus",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "y29tSn"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "PAEIQP"
+          },
+          "property": "dialog.userName",
+          "value": "=@userName"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "uCtYEv"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_uCtYEv()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "dialog.userName"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "dBDxSN"
+          },
+          "activity": "${SendActivity_dBDxSN()}"
+        },
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "0bH1UW",
+            "name": "Log into Azure AD"
+          },
+          "timeout": 900000,
+          "property": "dialog.token",
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "GraphAccess",
+          "text": "Please sign in",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "pTcEDm"
+          },
+          "resultProperty": "dialog.users",
+          "method": "GET",
+          "url": "https://graph.microsoft.com/v1.0/me/people/?$search=${dialog.userName}",
+          "contentType": "application/json",
+          "responseType": "json",
+          "headers": {
+            "Authorization": "Bearer ${dialog.token.token}"
+          }
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "gbNzsT"
+          },
+          "activity": "${SendActivity_gbNzsT()}"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "L3EnDD"
+          },
+          "condition": "formatNumber(count(dialog.users.content.value),0)",
+          "cases": [
+            {
+              "value": "0",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "kVdvCS"
+                  },
+                  "activity": "${SendActivity_kVdvCS()}"
+                },
+                {
+                  "$kind": "Microsoft.EndDialog",
+                  "$designer": {
+                    "id": "pMS31e"
+                  }
+                }
+              ]
+            },
+            {
+              "value": "1",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "3tHBT7"
+                  },
+                  "property": "dialog.userIndex",
+                  "value": 0
+                }
+              ]
+            }
+          ],
+          "default": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "aKgS1g"
+              },
+              "assignments": [
+                {
+                  "property": "dialog.userChoiceOptions",
+                  "value": "=foreach(dialog.users.content.value, u, concat(u.displayName, \" (\", u.scoredEmailAddresses[0].address, \")\"))"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.ChoiceInput",
+              "$designer": {
+                "id": "BN9P7C"
+              },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "prompt": "${ChoiceInput_Prompt_BN9P7C()}",
+              "choiceOptions": {
+                "includeNumbers": true,
+                "inlineOrMore": ", or "
+              },
+              "property": "dialog.userIndex",
+              "outputFormat": "index",
+              "choices": "=dialog.userChoiceOptions"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "PmcP63"
+          },
+          "assignments": [
+            {
+              "property": "dialog.chosenUser",
+              "value": "=dialog.users.content.value[dialog.userIndex]"
+            },
+            {
+              "property": "dialog.chosenUserId",
+              "value": "=dialog.chosenUser.id"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "DWMKpe"
+          },
+          "activity": "${SendActivity_DWMKpe()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Qg3qFn"
+          },
+          "activity": "${SendActivity_Qg3qFn()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "yqkYKA"
+          },
+          "resultProperty": "dialog.presence",
+          "method": "GET",
+          "url": "https://graph.microsoft.com/v1.0/users/${dialog.chosenUser.id}/presence",
+          "headers": {
+            "Authorization": "Bearer ${dialog.token.token}"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "7tp38C"
+          },
+          "activity": "${SendActivity_7tp38C()}"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "dMH5ml"
+          }
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "vbF4fd"
+          },
+          "activity": "${SendActivity_vbF4fd()}"
+        }
+      ]
+    }
+  ],
+  "generator": "GetUserStatus.lg",
+  "recognizer": "GetUserStatus.lu.qna",
+  "id": "GetUserStatus"
+}

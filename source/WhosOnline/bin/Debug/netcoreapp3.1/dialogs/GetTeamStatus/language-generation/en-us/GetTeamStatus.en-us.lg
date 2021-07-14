@@ -4,3 +4,8 @@
 [Activity
     Text = ${dialog.outputHtml}
 ]
+
+# LogAction_Text_EQhtX8()
+[Activity
+    Text = ${dialog.users}
+]

@@ -57,6 +57,25 @@
           "activity": "${SendActivity_nzY6R3()}"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "hRoLlV",
+        "name": "IsUserOnline"
+      },
+      "intent": "IsUserOnline",
+      "entities": [],
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "vwRF12"
+          },
+          "activityProcessed": true,
+          "dialog": "GetUserStatus"
+        }
+      ]
     }
   ],
   "generator": "WhosOnline.lg",

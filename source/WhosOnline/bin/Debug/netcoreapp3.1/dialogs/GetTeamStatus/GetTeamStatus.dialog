@@ -157,6 +157,15 @@
           ]
         },
         {
+          "$kind": "Microsoft.LogAction",
+          "$designer": {
+            "id": "EQhtX8"
+          },
+          "traceActivity": true,
+          "label": "Users",
+          "text": "${LogAction_Text_EQhtX8()}"
+        },
+        {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
             "id": "qosugk"

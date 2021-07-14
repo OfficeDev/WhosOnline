@@ -5,7 +5,10 @@
       "WhosOnline": [
         "GetTeamStatus.en-us"
       ],
-      "Greeting": ""
+      "Greeting": "",
+      "IsUserOnline": [
+        "GetUserStatus.en-us"
+      ]
     }
   }
 }

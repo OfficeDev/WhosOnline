@@ -1,0 +1,51 @@
+[import](common.lg)
+
+
+# SendActivity_dBDxSN()
+[Activity
+    Text = Asking if ${dialog.userName} is online
+]
+
+
+# TextInput_Prompt_uCtYEv()
+[Activity
+    Text = Who do you want to know about?
+]
+
+# SendActivity_vbF4fd()
+[Activity
+    Text = ${dialog.users}
+]
+
+# SendActivity_gbNzsT()
+[Activity
+    Text = ${formatNumber(count(dialog.users.content.value),0)}
+]
+
+# SendActivity_kVdvCS()
+[Activity
+    Text = ${SendActivity_kVdvCS_text()}
+]
+
+# SendActivity_kVdvCS_text()
+- I can't find a user named ${dialog.userName}
+- I don't know ${dialog.userName}
+# ChoiceInput_Prompt_BN9P7C()
+[Activity
+    Text = Which user?
+]
+
+# SendActivity_Qg3qFn()
+[Activity
+    Text = https://graph.microsoft.com/v1.0/users/${dialog.chosenUserId}/presence
+]
+
+# SendActivity_DWMKpe()
+[Activity
+    Text = ${dialog.chosenUserId}
+]
+
+# SendActivity_7tp38C()
+[Activity
+    Text = Presence is ${dialog.presence}
+]

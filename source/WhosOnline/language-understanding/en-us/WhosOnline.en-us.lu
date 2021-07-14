@@ -10,3 +10,11 @@
 - Hello
 - Hi there
 - Howdy
+
+# IsUserOnline
+- is {personName:userName = Alice} online?
+- check on {personName:userName = Tony}
+- check on someone
+- i want to check on someone
+
+@ prebuilt personName hasRoles userName
