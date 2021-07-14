@@ -1,25 +1,9 @@
 [import](common.lg)
 
 
-# SendActivity_dBDxSN()
-[Activity
-    Text = Asking if ${dialog.userName} is online
-]
-
-
 # TextInput_Prompt_uCtYEv()
 [Activity
     Text = Who do you want to know about?
-]
-
-# SendActivity_vbF4fd()
-[Activity
-    Text = ${dialog.users}
-]
-
-# SendActivity_gbNzsT()
-[Activity
-    Text = ${formatNumber(count(dialog.users.content.value),0)}
 ]
 
 # SendActivity_kVdvCS()
@@ -35,17 +19,12 @@
     Text = Which user?
 ]
 
-# SendActivity_Qg3qFn()
+# SendActivity_1UZbj7()
 [Activity
-    Text = https://graph.microsoft.com/v1.0/users/${dialog.chosenUserId}/presence
+    Text = User ${dialog.chosenUser.displayName} is ${dialog.chosenUser.availability}
 ]
 
-# SendActivity_DWMKpe()
+# SendActivity_1xbtvg()
 [Activity
-    Text = ${dialog.chosenUserId}
-]
-
-# SendActivity_7tp38C()
-[Activity
-    Text = Presence is ${dialog.presence}
+    Text = Sorry I can't get status for this user
 ]

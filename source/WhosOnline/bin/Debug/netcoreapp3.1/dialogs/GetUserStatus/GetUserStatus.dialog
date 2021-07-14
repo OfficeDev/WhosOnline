@@ -40,13 +40,6 @@
           "property": "dialog.userName"
         },
         {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "dBDxSN"
-          },
-          "activity": "${SendActivity_dBDxSN()}"
-        },
-        {
           "$kind": "Microsoft.OAuthInput",
           "$designer": {
             "id": "0bH1UW",
@@ -73,13 +66,6 @@
           "headers": {
             "Authorization": "Bearer ${dialog.token.token}"
           }
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "gbNzsT"
-          },
-          "activity": "${SendActivity_gbNzsT()}"
         },
         {
           "$kind": "Microsoft.SwitchCondition",
@@ -174,20 +160,6 @@
           ]
         },
         {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "DWMKpe"
-          },
-          "activity": "${SendActivity_DWMKpe()}"
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "Qg3qFn"
-          },
-          "activity": "${SendActivity_Qg3qFn()}"
-        },
-        {
           "$kind": "Microsoft.HttpRequest",
           "$designer": {
             "id": "yqkYKA"
@@ -202,24 +174,45 @@
           "responseType": "json"
         },
         {
-          "$kind": "Microsoft.SendActivity",
+          "$kind": "Microsoft.SetProperties",
           "$designer": {
-            "id": "7tp38C"
+            "id": "qWZJ58"
           },
-          "activity": "${SendActivity_7tp38C()}"
+          "assignments": [
+            {
+              "property": "dialog.chosenUser.availability",
+              "value": "=dialog.presence.content.availability"
+            },
+            {
+              "property": "dialog.chosenUser.activity",
+              "value": "=dialog.presence.content.activity"
+            }
+          ]
         },
         {
-          "$kind": "Microsoft.EndDialog",
+          "$kind": "Microsoft.IfCondition",
           "$designer": {
-            "id": "dMH5ml"
-          }
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "vbF4fd"
+            "id": "bO2lA6"
           },
-          "activity": "${SendActivity_vbF4fd()}"
+          "condition": "=dialog.chosenUser.availability!=null",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "1UZbj7"
+              },
+              "activity": "${SendActivity_1UZbj7()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "1xbtvg"
+              },
+              "activity": "${SendActivity_1xbtvg()}"
+            }
+          ]
         }
       ]
     }
