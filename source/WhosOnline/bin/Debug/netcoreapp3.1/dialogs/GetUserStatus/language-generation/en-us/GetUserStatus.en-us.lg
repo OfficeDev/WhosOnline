@@ -39,14 +39,22 @@
              "type": "Container",
              "items": [
                  {
-                     "type": "TextBlock",
-                     "text": "${user.activityColor}"
+                    "type": "Image",
+                    "url": "${user.activityColor}",
+                    "size": "Tiny"
                  },
                  {
                      "type": "TextBlock",
-                     "text": "User 2 is not available"
+                     "text": "${user.activity}"
                  }
              ]
+         }
+     ],
+     "actions": [
+         {
+             "type": "Action.OpenUrl",
+             "title": "Chat",
+             "url": "https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}"
          }
      ],
      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
