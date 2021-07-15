@@ -76,6 +76,31 @@
           "dialog": "GetUserStatus"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "aeVzPX",
+        "name": "Logoff"
+      },
+      "intent": "Logoff",
+      "actions": [
+        {
+          "$kind": "Microsoft.SignOutUser",
+          "$designer": {
+            "id": "UYYxup"
+          },
+          "userId": "=user.id",
+          "connectionName": "GraphAccess"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "26MALC"
+          },
+          "activity": "${SendActivity_26MALC()}"
+        }
+      ]
     }
   ],
   "generator": "WhosOnline.lg",
