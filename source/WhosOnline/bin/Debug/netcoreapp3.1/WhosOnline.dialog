@@ -44,23 +44,6 @@
     {
       "$kind": "Microsoft.OnIntent",
       "$designer": {
-        "id": "kT7XED",
-        "name": "Greeting"
-      },
-      "intent": "Greeting",
-      "actions": [
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "nzY6R3"
-          },
-          "activity": "${SendActivity_nzY6R3()}"
-        }
-      ]
-    },
-    {
-      "$kind": "Microsoft.OnIntent",
-      "$designer": {
         "id": "hRoLlV",
         "name": "IsUserOnline"
       },
@@ -184,6 +167,23 @@
               "activity": "${SendActivity_5Rr7a5()}"
             }
           ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "or4Glq",
+        "name": "Greeting"
+      },
+      "intent": "Greeting",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Nau8xo"
+          },
+          "activity": "${SendActivity_Nau8xo()}"
         }
       ]
     }

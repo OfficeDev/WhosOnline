@@ -3,16 +3,19 @@
 - Who's online
 - Who is online
 - Where are my teammates
+- What's going on?
+- What's up?
+- Sup?
 
 
-# Greeting
-- Hello
-- Hi there
-- Howdy
 
 # IsUserOnline
 - is {personName:userName = Alice} online?
 - check on {personName:userName = Tony}
+- where is {personName:userName = katie}
+- what about {personName:userName = Madeline}
+- where's {personName:userName = parker}
+- have you seen {personName:userName = alice}
 - check on someone
 - i want to check on someone
 
@@ -24,6 +27,22 @@
 
 
 # Microsoft365FAQ
+> add some example phrases to trigger this intent:
+> - please tell me the weather
+> - what is the weather like in {city=Seattle}
+
+> entity definitions:
+> @ ml city
+
+# Greeting
+- Hi
+- Hello
+- Howdy
+- How ya doing
+- Greetings
+
+
+# Cancel
 > add some example phrases to trigger this intent:
 > - please tell me the weather
 > - what is the weather like in {city=Seattle}

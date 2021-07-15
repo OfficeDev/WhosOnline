@@ -7,17 +7,6 @@
 
 # SendActivity_DidNotUnderstand_text()
 - Sorry, I didn't get that.
-# SendActivity_nzY6R3()
-[Activity
-    Text = ${SendActivity_nzY6R3_text()}
-]
-
-# SendActivity_nzY6R3_text()
-- Hello there
-- Hi to you
-- Howdy
-
-
 # SendActivity_26MALC()
 [Activity
     Text = OK you have logged off
@@ -32,3 +21,16 @@
 
 # SendActivity_5Rr7a5()
 - ${expandText(@answer)}
+
+# SendActivity_Nau8xo()
+[Activity
+    Text = ${SendActivity_Nau8xo_text()}
+]
+
+# SendActivity_Nau8xo_text()
+- Hi
+- Hi there ${turn.activity.from.name}
+- Howdy
+- Hello
+- Greetings earthling!
+- Hi ${turn.activity.from.name}, what can I do for you today?

@@ -5,11 +5,11 @@
       "WhosOnline": [
         "GetTeamStatus.en-us"
       ],
-      "Greeting": "",
       "IsUserOnline": [
         "GetUserStatus.en-us"
       ],
-      "Logoff": ""
+      "Logoff": "",
+      "Greeting": ""
     }
   }
 }

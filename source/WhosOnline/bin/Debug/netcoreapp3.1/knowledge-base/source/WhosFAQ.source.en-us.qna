@@ -2,6 +2,14 @@
           > !# @source.multiTurn=false
           > # QnA pairs
 
+# ? I'm lonely
+```
+Are you saying I'm not a good conversationalist?
+```
+# ? Where is everybody?
+```
+They're deliberately avoiding you!
+```
 > !# @qna.pair.source = https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-frequently-asked-questions
 
 <a id = "1"></a>
