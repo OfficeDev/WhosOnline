@@ -1,6 +1,7 @@
 {
   "$kind": "Microsoft.CrossTrainedRecognizerSet",
   "recognizers": [
-    "WhosOnline.lu"
+    "WhosOnline.lu",
+    "WhosOnline.qna"
   ]
 }

@@ -266,3 +266,8 @@ C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\Get
 C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\generated\interruption\GetUserStatus.en-us.lu
 C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\dialogs\GetUserStatus\knowledge-base\en-us\GetUserStatus.en-us.qna
 C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\generated\interruption\GetUserStatus.en-us.qna
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\generated\qnamaker.settings.composer.westus.json
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\recognizers\WhosOnline.en-us.qna.dialog
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\recognizers\WhosOnline.qna.dialog
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\knowledge-base\source\WhosFAQ.source.en-us.qna
+C:\Source\Repos\WhosOnline\source\WhosOnline\bin\Debug\netcoreapp3.1\knowledge-base\source\WhosOnlineBot.source.en-us.qna

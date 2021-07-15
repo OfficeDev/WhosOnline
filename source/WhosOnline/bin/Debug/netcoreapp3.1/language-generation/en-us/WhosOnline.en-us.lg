@@ -22,3 +22,13 @@
 [Activity
     Text = OK you have logged off
 ]
+
+
+# TextInput_Prompt_el3udA()
+[Activity
+    Text = ${expandText(@answer)}
+    SuggestedActions = ${foreach(turn.recognized.answers[0].context.prompts, x, x.displayText)}
+]
+
+# SendActivity_5Rr7a5()
+- ${expandText(@answer)}
