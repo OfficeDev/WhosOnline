@@ -135,7 +135,8 @@
               "prompt": "${ChoiceInput_Prompt_BN9P7C()}",
               "choiceOptions": {
                 "includeNumbers": true,
-                "inlineOrMore": ", or "
+                "inlineOrMore": ", or ",
+                "inlineOr": " or "
               },
               "property": "dialog.userIndex",
               "outputFormat": "index",
@@ -186,6 +187,25 @@
             {
               "property": "dialog.chosenUser.activity",
               "value": "=dialog.presence.content.activity"
+            },
+            {
+              "property": "this.colors",
+              "value": {
+                "Available": "green",
+                "Away": "gold",
+                "BeRightBack": "gold",
+                "Busy": "darkred",
+                "DoNotDisturb": "darkred",
+                "Offline": "gray"
+              }
+            },
+            {
+              "value": "${getProperty(this.colors, dialog.chosenUser.activity)}",
+              "property": "dialog.chosenUser.ActivityColor"
+            },
+            {
+              "property": "dialog.chosenUser.AvailabilityColor",
+              "value": "${getProperty(this.colors, dialog.chosenUser.availability)}"
             }
           ]
         },
@@ -199,9 +219,9 @@
             {
               "$kind": "Microsoft.SendActivity",
               "$designer": {
-                "id": "1UZbj7"
+                "id": "EdiNql"
               },
-              "activity": "${SendActivity_1UZbj7()}"
+              "activity": "${SendActivity_EdiNql()}"
             }
           ],
           "elseActions": [
