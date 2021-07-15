@@ -11,9 +11,13 @@
 
 # IsUserOnline
 - is {personName:userName = Alice} online?
+- is {personName:userName = lee} around?
+- have you seen {personName:userName = hugo}?
 - check on {personName:userName = Tony}
 - where is {personName:userName = katie}
-- what about {personName:userName = Madeline}
+- what about {personName:userName = Bob}
+- how about {personName:userName = katie}
+- how about {personName:userName = Madeline}?
 - where's {personName:userName = parker}
 - have you seen {personName:userName = alice}
 - check on someone
@@ -25,15 +29,6 @@
 - Log off
 - Logoff
 
-
-# Microsoft365FAQ
-> add some example phrases to trigger this intent:
-> - please tell me the weather
-> - what is the weather like in {city=Seattle}
-
-> entity definitions:
-> @ ml city
-
 # Greeting
 - Hi
 - Hello
@@ -42,7 +37,7 @@
 - Greetings
 
 
-# Cancel
+# cancel
 > add some example phrases to trigger this intent:
 > - please tell me the weather
 > - what is the weather like in {city=Seattle}

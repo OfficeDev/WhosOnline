@@ -36,7 +36,6 @@
           "prompt": "${TextInput_Prompt_uCtYEv()}",
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
-          "defaultValueResponse": "",
           "property": "dialog.userName"
         },
         {
@@ -131,16 +130,20 @@
               "allowInterruptions": false,
               "unrecognizedPrompt": "",
               "invalidPrompt": "",
-              "defaultValueResponse": "",
               "prompt": "${ChoiceInput_Prompt_BN9P7C()}",
               "choiceOptions": {
                 "includeNumbers": true,
                 "inlineOrMore": ", or ",
-                "inlineOr": " or "
+                "inlineOr": " or ",
+                "inlineSeparator": ", "
               },
               "property": "dialog.userIndex",
               "outputFormat": "index",
-              "choices": "=dialog.userChoiceOptions"
+              "choices": "=dialog.userChoiceOptions",
+              "recognizerOptions": {
+                "recognizeOrdinals": true,
+                "recognizeNumbers": true
+              }
             }
           ]
         },
@@ -241,6 +244,12 @@
               "activity": "${SendActivity_1xbtvg()}"
             }
           ]
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "vveXNG"
+          }
         }
       ]
     }

@@ -1,5 +1,8 @@
 {
   "$kind": "Microsoft.MultiLanguageRecognizer",
   "id": "LUIS_GetUserStatus",
-  "recognizers": {}
+  "recognizers": {
+    "en-us": "GetUserStatus.en-us.lu",
+    "": "GetUserStatus.en-us.lu"
+  }
 }
