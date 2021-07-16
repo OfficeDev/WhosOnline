@@ -2,6 +2,17 @@
           > !# @source.multiTurn=false
           > # QnA pairs
 
+# ? how are you?
+- how's it going?
+- are you ok?
+```
+I am completely operational, and all my circuits are functioning perfectly.
+```
+# ? yo teams
+- yo
+```
+Yo teams to you too! I love Teams apps!
+```
 # ? I'm lonely
 ```
 Are you saying I'm not a good conversationalist?
@@ -60,26 +71,6 @@ Some Office 365 plans are now Microsoft 365 plans. New name, same great value, s
 
 ```markdown
 We changed the name to be more reflective of the range of features and benefits in the subscription. Microsoft 365 includes everything you know in Office 365, including best-in-class Office apps, intelligent cloud services, and advanced security.
-```
-
-> !# @qna.pair.source = https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-frequently-asked-questions
-
-<a id = "4"></a>
-
-# ? Where business plan names have changed, has the product or price changed?
-
-```markdown
-No, there are no price or product changes for small and medium business plans. The same plans are available, only with updated names.
-```
-
-> !# @qna.pair.source = https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-frequently-asked-questions
-
-<a id = "5"></a>
-
-# ? My business has an existing Office 365 business plan subscription. What does the change to Microsoft 365 mean for me?
-
-```markdown
-No action is needed from you. Your Office 365 subscription will automatically be renamed to Microsoft 365. You will see the name of your subscription update to the new name across your Admin Portal and monthly billing statements.
 ```
 
 > !# @qna.pair.source = https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-frequently-asked-questions

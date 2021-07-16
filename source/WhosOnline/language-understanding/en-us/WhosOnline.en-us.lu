@@ -16,6 +16,7 @@
 - check on {personName:userName = Tony}
 - where is {personName:userName = katie}
 - what about {personName:userName = Bob}
+- what about {personName:userName = tony}?
 - how about {personName:userName = katie}
 - how about {personName:userName = Madeline}?
 - where's {personName:userName = parker}
@@ -35,7 +36,7 @@
 - Howdy
 - How ya doing
 - Greetings
-
+- hiya
 
 # cancel
 > add some example phrases to trigger this intent:
