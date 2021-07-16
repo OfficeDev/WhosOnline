@@ -32,7 +32,7 @@
           "disabled": false,
           "maxTurnCount": 3,
           "alwaysPrompt": false,
-          "allowInterruptions": false,
+          "allowInterruptions": "=#Cancel.score > 0.8",
           "prompt": "${TextInput_Prompt_uCtYEv()}",
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
@@ -127,7 +127,7 @@
               "disabled": false,
               "maxTurnCount": 3,
               "alwaysPrompt": false,
-              "allowInterruptions": false,
+              "allowInterruptions": "=#Cancel.score > 0.8",
               "unrecognizedPrompt": "",
               "invalidPrompt": "",
               "prompt": "${ChoiceInput_Prompt_BN9P7C()}",
@@ -250,6 +250,30 @@
           "$designer": {
             "id": "vveXNG"
           }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "vj4u7f",
+        "name": "Cancel"
+      },
+      "intent": "Cancel",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "FbosXY"
+          },
+          "activity": "${SendActivity_FbosXY()}"
+        },
+        {
+          "$kind": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "IybQkC"
+          },
+          "activityProcessed": true
         }
       ]
     }

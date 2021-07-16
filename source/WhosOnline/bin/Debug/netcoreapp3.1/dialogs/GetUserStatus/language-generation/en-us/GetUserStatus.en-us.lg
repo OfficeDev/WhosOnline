@@ -77,3 +77,13 @@
 [Activity
     Attachments = ${json(PresenceAdaptiveCard(dialog.chosenUser))}
 ]
+
+# SendActivity_FbosXY()
+[Activity
+    Text = ${SendActivity_FbosXY_text()}
+]
+
+# SendActivity_FbosXY_text()
+- Cancelled
+- Alright
+- OK is there anything else I can do for you?

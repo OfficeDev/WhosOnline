@@ -11,5 +11,11 @@
       "Logoff": "",
       "Greeting": ""
     }
+  },
+  "GetUserStatus.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "Cancel": ""
+    }
   }
 }
